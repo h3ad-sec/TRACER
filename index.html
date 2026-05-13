@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TRACER — Query Arsenal // H3AD-SEC</title>
+  <title>TRACERULES - Detection Query Arsenal // H3AD-SEC</title>
   <meta name="description"
     content="TRACER by H3AD-SEC — A library of KQL, Sigma, and XQL security detection queries. Query Arsenal for detection engineers." />
   <link rel="icon" href="https://h3ad-sec.github.io/fevicon.png?v=2026" />
@@ -993,7 +993,7 @@
         <a href="https://h3ad-sec.github.io/H3AD-DETECT/" target="_blank" rel="noopener">H3AD-DETECT</a>
         <div class="nav-dropdown">
           <div class="nav-dropdown-inner">
-            <a href="https://h3ad-sec.github.io/TRACER/" class="nav-current">TRACER</a>
+            <a href="https://h3ad-sec.github.io/TRACERULES/" class="nav-current">TRACERULES</a>
           </div>
         </div>
       </div>
@@ -1003,10 +1003,16 @@
           <div class="nav-dropdown-inner">
             <a href="https://h3ad-sec.github.io/HYPOS/" target="_blank" rel="noopener">HYPOS</a>
             <a href="https://h3ad-sec.github.io/PIVEX/" target="_blank" rel="noopener">PIVEX</a>
+            <a href="https://h3ad-sec.github.io/TRACEPULSE/" target="_blank" rel="noopener">TRACEPULSE</a>
           </div>
         </div>
       </div>
-      <a href="https://h3ad-sec.github.io/H3AD-OPS/" target="_blank" rel="noopener">H3AD-OPS</a>
+      <div class="nav-item">
+        <a href="https://h3ad-sec.github.io/H3AD-OPS/" target="_blank" rel="noopener">H3AD-OPS</a>
+        <div class="nav-dropdown"><div class="nav-dropdown-inner">
+          <a href="https://h3ad-sec.github.io/QUICKTRACE/" target="_blank" rel="noopener">QUICKTRACE</a>
+        </div></div>
+      </div>
       <a href="https://h3ad-sec.github.io/H3AD-DF/" target="_blank" rel="noopener">H3AD-DF</a>
       <a href="https://h3ad-sec.github.io/H3AD-IR/" target="_blank" rel="noopener">H3AD-IR</a>
       <div class="nav-divider"></div>
@@ -1032,14 +1038,16 @@
     <a href="https://h3ad-sec.github.io/H3AD-AI/" target="_blank" rel="noopener" onclick="closeDrawer()">H3AD-AI ↗</a>
     <a href="https://h3ad-sec.github.io/H3AD-DETECT/" target="_blank" rel="noopener" onclick="closeDrawer()">H3AD-DETECT
       ↗</a>
-    <a href="https://h3ad-sec.github.io/TRACER/" onclick="closeDrawer()" class="drawer-sub nav-current">↳ TRACER</a>
+    <a href="https://h3ad-sec.github.io/TRACERULES/" onclick="closeDrawer()" class="drawer-sub nav-current">↳ TRACERULES</a>
     <a href="https://h3ad-sec.github.io/H3AD-HUNT/" target="_blank" rel="noopener" onclick="closeDrawer()">H3AD-HUNT
       ↗</a>
     <a href="https://h3ad-sec.github.io/HYPOS/" target="_blank" rel="noopener" onclick="closeDrawer()"
       class="drawer-sub">↳ HYPOS ↗</a>
     <a href="https://h3ad-sec.github.io/PIVEX/" target="_blank" rel="noopener" onclick="closeDrawer()"
       class="drawer-sub">↳ PIVEX ↗</a>
+    <a href="https://h3ad-sec.github.io/TRACEPULSE/" target="_blank" rel="noopener" onclick="closeDrawer()" class="drawer-sub">↳ TRACEPULSE ↗</a>
     <a href="https://h3ad-sec.github.io/H3AD-OPS/" target="_blank" rel="noopener" onclick="closeDrawer()">H3AD-OPS ↗</a>
+    <a href="https://h3ad-sec.github.io/QUICKTRACE/" target="_blank" rel="noopener" onclick="closeDrawer()" class="drawer-sub">↳ QUICKTRACE ↗</a>
     <a href="https://h3ad-sec.github.io/H3AD-DF/" target="_blank" rel="noopener" onclick="closeDrawer()">H3AD-DF ↗</a>
     <a href="https://h3ad-sec.github.io/H3AD-IR/" target="_blank" rel="noopener" onclick="closeDrawer()">H3AD-IR ↗</a>
     <a href="mailto:h3adsec@gmail.com" onclick="closeDrawer()">CONTACT</a>
@@ -1056,10 +1064,10 @@
           <span>›</span>
           <a href="https://h3ad-sec.github.io/H3AD-DETECT/" target="_blank" rel="noopener">H3AD-DETECT</a>
           <span>›</span>
-          <a href="https://h3ad-sec.github.io/TRACER/">TRACER</a>
+          <a href="https://h3ad-sec.github.io/TRACERULES/">TRACERULES</a>
         </div>
         <div class="hero-title-row">
-          <span class="hero-title">TRACER</span>
+          <span class="hero-title">TRACERULES</span>
           <span class="hero-tagline">QUERY ARSENAL</span>
         </div>
       </div>
@@ -1092,7 +1100,7 @@
 
     <!-- ── Footer ─────────────────────────────────────────────────────────── -->
     <footer class="tracer-footer">
-      H3AD-SEC &middot; TRACER &middot; QUERY ARSENAL
+      H3AD-SEC &middot; TRACERULES &middot; QUERY ARSENAL
     </footer>
 
   </div><!-- /page-wrap -->
@@ -1138,7 +1146,7 @@
         'KQL', 'SIGMA', 'XQL', 'MITRE', 'ATT&CK', 'T1059', 'TA0002', 'SIEM', 'EDR',
         'DETECT', 'QUERY', 'HUNT', 'IOC', 'RULE', 'ALERT', 'YARA', 'SPLUNK', 'ELASTIC',
         'DeviceEvents', 'EventID', 'ProcessCreate', 'NetworkConnect', 'FileCreate',
-        'H3AD', 'TRACER', 'ARSENAL', 'T1055', 'T1003', 'T1021', 'T1078', 'T1566',
+        'H3AD', 'TRACERULES', 'ARSENAL', 'T1055', 'T1003', 'T1021', 'T1078', 'T1566',
         '4688', '4624', '4625', '5140', '7045', '0x', 'LSASS', 'WMI', 'RDP', 'SMB'
       ];
       var cols, drops, fs = 13;
