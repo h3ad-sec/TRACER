@@ -821,6 +821,194 @@
       border-color: var(--accent);
     }
 
+    /* ── View toggle buttons ───────────────────────────────────────────── */
+    .view-toggle-group {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      flex-shrink: 0;
+      margin-left: 8px;
+    }
+
+    .view-toggle-btn {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      padding: 4px 12px;
+      border-radius: 3px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      transition: all 0.14s;
+      white-space: nowrap;
+    }
+
+    .view-toggle-btn:hover {
+      color: var(--text);
+      border-color: var(--muted);
+    }
+
+    .view-toggle-btn.active {
+      color: var(--accent);
+      border-color: var(--accent);
+      background: rgba(0, 255, 159, 0.08);
+    }
+
+    body.light .view-toggle-btn.active {
+      background: rgba(0, 77, 184, 0.08);
+      border-color: var(--accent);
+    }
+
+    /* ── Coverage heatmap ──────────────────────────────────────────────── */
+    #coverageView {
+      display: none;
+    }
+
+    .coverage-summary {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 10px;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      margin-bottom: 16px;
+    }
+
+    .coverage-summary span {
+      color: var(--accent);
+    }
+
+    .heatmap-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 12px;
+    }
+
+    .tactic-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+      transition: border-color 0.18s;
+    }
+
+    .tactic-card.has-coverage {
+      border-color: rgba(0, 255, 159, 0.3);
+    }
+
+    .tactic-card.no-coverage {
+      opacity: 0.45;
+    }
+
+    .tactic-card-header {
+      padding: 10px 14px 8px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .tactic-card.has-coverage .tactic-card-header {
+      border-bottom-color: rgba(0, 255, 159, 0.15);
+    }
+
+    .tactic-id {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 9px;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      margin-bottom: 2px;
+    }
+
+    .tactic-card.has-coverage .tactic-id {
+      color: var(--accent);
+      opacity: 0.7;
+    }
+
+    .tactic-name {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 11px;
+      color: var(--text);
+      letter-spacing: 0.06em;
+      line-height: 1.3;
+    }
+
+    .tactic-card.has-coverage .tactic-name {
+      color: var(--accent);
+    }
+
+    .tactic-query-count {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 9px;
+      color: var(--muted);
+      margin-top: 4px;
+      letter-spacing: 0.04em;
+    }
+
+    .tactic-card.has-coverage .tactic-query-count {
+      color: var(--text-dim);
+    }
+
+    .tactic-card-body {
+      padding: 6px 0;
+    }
+
+    .tactic-no-coverage {
+      padding: 10px 14px;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 10px;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+    }
+
+    .technique-cell {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 8px;
+      padding: 8px 14px;
+      border-top: 1px solid var(--border-dim);
+      cursor: pointer;
+      transition: background 0.12s;
+    }
+
+    .technique-cell:first-child {
+      border-top: none;
+    }
+
+    .technique-cell:hover {
+      background: rgba(0, 255, 159, 0.04);
+    }
+
+    .technique-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .technique-id {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 9px;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+      margin-bottom: 2px;
+    }
+
+    .technique-name {
+      font-size: 11px;
+      color: var(--text-dim);
+      line-height: 1.4;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .technique-badge {
+      flex-shrink: 0;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 8px;
+      letter-spacing: 0.1em;
+      padding: 2px 6px;
+      border-radius: 3px;
+      align-self: center;
+      font-weight: bold;
+    }
+
     /* ── Footer ────────────────────────────────────────────────────────── */
     .tracer-footer {
       border-top: 1px solid var(--border);
@@ -1096,6 +1284,10 @@
       <div class="filter-spacer"></div>
       <input class="filter-search" id="searchInput" type="text" placeholder="search queries..." oninput="onSearch()"
         autocomplete="off" spellcheck="false" />
+      <div class="view-toggle-group">
+        <button class="view-toggle-btn active" id="btnViewQueries" onclick="setView('queries')">&#x2261; QUERIES</button>
+        <button class="view-toggle-btn" id="btnViewCoverage" onclick="setView('coverage')">&#x229E; COVERAGE</button>
+      </div>
     </div>
 
     <!-- ── Main content ───────────────────────────────────────────────────── -->
@@ -1106,6 +1298,10 @@
         <div class="state-panel" id="loadingState" style="grid-column:1/-1">
           <div class="state-loading-text">LOADING ARSENAL...</div>
         </div>
+      </div>
+      <div id="coverageView">
+        <div class="coverage-summary" id="coverageSummary"></div>
+        <div class="heatmap-grid" id="heatmapGrid"></div>
       </div>
     </div>
 
@@ -1287,6 +1483,8 @@
     function renderGrid(queries) {
       var grid = document.getElementById('queryGrid');
       var count = document.getElementById('queryCount');
+      // Don't touch display if coverage view is active
+      if (currentView === 'coverage') return;
 
       if (!queries || queries.length === 0) {
         grid.innerHTML = '<div class="state-panel" style="grid-column:1/-1">'
@@ -1457,6 +1655,144 @@
         .catch(function () {
           showError();
         });
+    }
+
+    // ── ATT&CK tactics ───────────────────────────────────────────────────────────
+    var TACTICS = [
+      { id: 'TA0001', name: 'Initial Access' },
+      { id: 'TA0002', name: 'Execution' },
+      { id: 'TA0003', name: 'Persistence' },
+      { id: 'TA0004', name: 'Privilege Escalation' },
+      { id: 'TA0005', name: 'Defense Evasion' },
+      { id: 'TA0006', name: 'Credential Access' },
+      { id: 'TA0007', name: 'Discovery' },
+      { id: 'TA0008', name: 'Lateral Movement' },
+      { id: 'TA0009', name: 'Collection' },
+      { id: 'TA0010', name: 'Exfiltration' },
+      { id: 'TA0011', name: 'Command and Control' },
+      { id: 'TA0040', name: 'Impact' },
+      { id: 'TA0042', name: 'Resource Development' },
+      { id: 'TA0043', name: 'Reconnaissance' }
+    ];
+
+    // ── View state ────────────────────────────────────────────────────────────────
+    var currentView = 'queries';
+
+    function setView(v) {
+      currentView = v;
+      var btnQ = document.getElementById('btnViewQueries');
+      var btnC = document.getElementById('btnViewCoverage');
+      var grid = document.getElementById('queryGrid');
+      var count = document.getElementById('queryCount');
+      var coverage = document.getElementById('coverageView');
+
+      if (v === 'coverage') {
+        btnQ.classList.remove('active');
+        btnC.classList.add('active');
+        grid.style.display = 'none';
+        count.style.display = 'none';
+        coverage.style.display = 'block';
+        buildCoverageMap();
+      } else {
+        btnC.classList.remove('active');
+        btnQ.classList.add('active');
+        coverage.style.display = 'none';
+        grid.style.display = 'grid';
+        renderGrid(getFiltered());
+      }
+    }
+
+    // ── Coverage heatmap ──────────────────────────────────────────────────────────
+    function buildCoverageMap() {
+      var heatmapGrid = document.getElementById('heatmapGrid');
+      var summaryEl = document.getElementById('coverageSummary');
+
+      // Group queries by tactic ID
+      var tacticMap = {};
+      TACTICS.forEach(function (t) { tacticMap[t.id] = []; });
+
+      allQueries.forEach(function (q) {
+        var tid = (q.tactic || '').trim();
+        if (tacticMap.hasOwnProperty(tid)) {
+          tacticMap[tid].push(q);
+        }
+      });
+
+      // Compute summary stats
+      var coveredTactics = 0;
+      var totalTechniques = {};
+      TACTICS.forEach(function (t) {
+        var qs = tacticMap[t.id];
+        if (qs.length > 0) coveredTactics++;
+        qs.forEach(function (q) {
+          if (q.techniqueId) totalTechniques[q.techniqueId] = true;
+        });
+      });
+
+      summaryEl.innerHTML = 'COVERAGE: <span>' + coveredTactics + '</span> / <span>14</span> TACTICS'
+        + ' &nbsp;&middot;&nbsp; <span>' + allQueries.length + '</span> QUERIES'
+        + ' &nbsp;&middot;&nbsp; <span>' + Object.keys(totalTechniques).length + '</span> TECHNIQUES';
+
+      // Render tactic cards
+      var html = '';
+      TACTICS.forEach(function (tactic) {
+        var qs = tacticMap[tactic.id];
+        var hasCoverage = qs.length > 0;
+        var cardClass = 'tactic-card ' + (hasCoverage ? 'has-coverage' : 'no-coverage');
+
+        var countText = hasCoverage
+          ? (qs.length + (qs.length === 1 ? ' query' : ' queries'))
+          : '— no coverage';
+
+        html += '<div class="' + cardClass + '">';
+        html += '<div class="tactic-card-header">';
+        html += '<div class="tactic-id">' + escapeHtml(tactic.id) + '</div>';
+        html += '<div class="tactic-name">' + escapeHtml(tactic.name.toUpperCase()) + '</div>';
+        html += '<div class="tactic-query-count">' + countText + '</div>';
+        html += '</div>';
+        html += '<div class="tactic-card-body">';
+
+        if (!hasCoverage) {
+          html += '<div class="tactic-no-coverage">—</div>';
+        } else {
+          qs.forEach(function (q) {
+            var platform = (q.platform || 'kql').toLowerCase();
+            var badgeClass = platformBadgeClass(platform);
+            var techId = q.techniqueId ? escapeHtml(q.techniqueId) : '';
+            var techName = q.techniqueName
+              ? escapeHtml(q.techniqueName)
+              : escapeHtml(q.title || 'Untitled');
+
+            html += '<div class="technique-cell" onclick="switchToTactic(\'' + escapeHtml(tactic.id) + '\')">';
+            html += '<div class="technique-info">';
+            if (techId) html += '<div class="technique-id">' + techId + '</div>';
+            html += '<div class="technique-name">' + techName + '</div>';
+            html += '</div>';
+            html += '<span class="technique-badge ' + badgeClass + '">' + platform.toUpperCase() + '</span>';
+            html += '</div>';
+          });
+        }
+
+        html += '</div></div>';
+      });
+
+      heatmapGrid.innerHTML = html;
+    }
+
+    // ── Switch from coverage cell back to queries view filtered by tactic ─────────
+    function switchToTactic(tacticId) {
+      // Switch to queries view
+      setView('queries');
+      // Set search to tactic ID so relevant queries surface
+      var searchInput = document.getElementById('searchInput');
+      searchInput.value = tacticId;
+      searchTerm = tacticId.toLowerCase();
+      // Reset platform filter to all
+      activeFilter = 'all';
+      document.querySelectorAll('.filter-pill').forEach(function (pill) {
+        pill.classList.toggle('active', pill.dataset.filter === 'all');
+      });
+      renderGrid(getFiltered());
     }
 
     // ── Init ──────────────────────────────────────────────────────────────────────
